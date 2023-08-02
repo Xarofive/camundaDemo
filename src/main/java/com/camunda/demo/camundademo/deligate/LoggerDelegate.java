@@ -10,7 +10,7 @@ import java.util.logging.Logger;
 public class LoggerDelegate implements JavaDelegate {
 
     private final Logger LOGGER = Logger.getLogger(LoggerDelegate.class.getName());
-    private StringBuilder stringBuilder = new StringBuilder();
+    private final StringBuilder stringBuilder = new StringBuilder();
 
     @Override
     public void execute(DelegateExecution execution) throws Exception {

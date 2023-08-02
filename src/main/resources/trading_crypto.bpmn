@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:modeler="http://camunda.org/schema/modeler/1.0" id="Definitions_1f5xptb" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="5.11.0" modeler:executionPlatform="Camunda Platform" modeler:executionPlatformVersion="7.19.0">
+  <bpmn:collaboration id="Collaboration_145c5ck">
+    <bpmn:participant id="Participant_1mxwwls" name="Trading Crypto" processRef="trading_crypto" />
+  </bpmn:collaboration>
+  <bpmn:process id="trading_crypto" name="Trading Crypto" isExecutable="true" camunda:versionTag="v1.0" camunda:historyTimeToLive="20">
+    <bpmn:laneSet id="LaneSet_02may70">
+      <bpmn:lane id="Lane_0va228i" name="Trading">
+        <bpmn:flowNodeRef>StartEvent_1</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>get_quote</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Event_1c3xp9e</bpmn:flowNodeRef>
+      </bpmn:lane>
+      <bpmn:lane id="Lane_1ja55xl" name="Do nothing" />
+    </bpmn:laneSet>
+    <bpmn:startEvent id="StartEvent_1">
+      <bpmn:outgoing>Flow_1xwlv0q</bpmn:outgoing>
+    </bpmn:startEvent>
+    <bpmn:sequenceFlow id="Flow_1xwlv0q" sourceRef="StartEvent_1" targetRef="get_quote" />
+    <bpmn:serviceTask id="get_quote" name="get quote" camunda:type="external" camunda:topic="get-quote">
+      <bpmn:incoming>Flow_1xwlv0q</bpmn:incoming>
+      <bpmn:outgoing>Flow_052augt</bpmn:outgoing>
+    </bpmn:serviceTask>
+    <bpmn:endEvent id="Event_1c3xp9e">
+      <bpmn:incoming>Flow_052augt</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:sequenceFlow id="Flow_052augt" sourceRef="get_quote" targetRef="Event_1c3xp9e" />
+  </bpmn:process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Collaboration_145c5ck">
+      <bpmndi:BPMNShape id="Participant_1mxwwls_di" bpmnElement="Participant_1mxwwls" isHorizontal="true">
+        <dc:Bounds x="129" y="52" width="1001" height="370" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_0va228i_di" bpmnElement="Lane_0va228i" isHorizontal="true">
+        <dc:Bounds x="159" y="52" width="971" height="250" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_1ja55xl_di" bpmnElement="Lane_1ja55xl" isHorizontal="true">
+        <dc:Bounds x="159" y="302" width="971" height="120" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="_BPMNShape_StartEvent_2" bpmnElement="StartEvent_1">
+        <dc:Bounds x="222" y="159" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_090gzch_di" bpmnElement="get_quote">
+        <dc:Bounds x="310" y="137" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_1c3xp9e_di" bpmnElement="Event_1c3xp9e">
+        <dc:Bounds x="462" y="159" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="Flow_1xwlv0q_di" bpmnElement="Flow_1xwlv0q">
+        <di:waypoint x="258" y="177" />
+        <di:waypoint x="310" y="177" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_052augt_di" bpmnElement="Flow_052augt">
+        <di:waypoint x="410" y="177" />
+        <di:waypoint x="462" y="177" />
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>
